@@ -24,17 +24,26 @@ let persons =[
       "number": "39-23-6423122"
     }
 ]
-
-app.get('/api/persons',(req, res)=>{
-    res.json(persons);
-})
-
-app.get('/info', (req, res)=>{
+app.get('/info', (_, res)=>{
     res.send(
         `<h1>Phonebook</h1>
         <p>The phonebook has info for ${persons.length} people</p>
         <p>${(new Date()).toString()}</p>`
     )
+})
+
+app.get('/api/persons',(_, res)=>{
+    res.json(persons);
+})
+
+app.get('/api/persons/:id',(req, res)=>{
+    const id = req.params.id;
+    const person = persons.find(person => person.id === id);
+
+    if(person)
+        res.json(person);
+    else
+        res.status(404).send(`<p style="color:red;"> Error: There is no person with id = ${id}.</p>`);
 })
 
 const PORT = 3001;
