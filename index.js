@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 app.use(express.json())
+
+morgan.token('body', (_, res)=> {console.log(res)});
+
+app.use(morgan(':date[clf] request{from :remote-addr, method :method, to :url, content-type :req[content-type]}, response {status :status content-length :res[content-length] response time :response-time ms}'))
 
 const idsSet = new Set();
 
@@ -67,6 +72,8 @@ let persons =[
 persons.forEach((person)=>{
     idsSet.add(person.id);
 })
+
+
 app.get('/info', (_, res)=>{
     res.send(
         `<h1>Phonebook</h1>
@@ -87,6 +94,7 @@ app.get('/api/persons/:id',(req, res)=>{
         res.json(person);
     else
         res.status(404).json({error: `Error: There is no person with id = ${id}.`});
+
 })
 
 app.delete('/api/persons/:id',(req, res)=>{
