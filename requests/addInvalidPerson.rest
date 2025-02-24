@@ -1,0 +1,156 @@
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"Arto Hellas",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"  John Snow",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John      Snow",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow    ",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"john snow",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"Joh@n Snow",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John SnowA",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"",
+    "number":"123-456-789"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":"   102947"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":"qweiurg"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":"111    2222"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":" 111-2222"
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":"1112222 "
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":""
+}
+
+###
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow"
+}
