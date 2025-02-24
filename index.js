@@ -4,9 +4,9 @@ const morgan = require('morgan');
 
 app.use(express.json())
 
-morgan.token('body', (_, res)=> {console.log(res)});
+morgan.token('req_body', (req, res)=> {return JSON.stringify(req.body)});
 
-app.use(morgan(':date[clf] request{from :remote-addr, method :method, to :url, content-type :req[content-type]}, response {status :status content-length :res[content-length] response time :response-time ms}'))
+app.use(morgan(':date[clf] request{from: :remote-addr, method: :method, to: :url, content-type: :req[content-type], content: :req_body }, response {status: :status, content-length: :res[content-length], response-time: :response-time ms}'))
 
 const idsSet = new Set();
 
