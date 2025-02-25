@@ -1,4 +1,4 @@
-const persons = require('../modules/persons')
+const persons = require('../services/persons')
 
 
 exports.getPersons = (req,res) =>{
