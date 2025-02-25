@@ -1,8 +1,14 @@
 const express = require('express');
-const app = express();
+const cors= require('cors');
 const morgan = require('morgan');
 
+const app = express();
+
 app.use(express.json())
+
+if(process.env.NODE_ENV === "dev"){
+    app.use(cors())
+}
 
 morgan.token('req_body', (req, res)=> {return JSON.stringify(req.body)});
 

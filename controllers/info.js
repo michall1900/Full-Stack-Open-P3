@@ -1,9 +1,9 @@
-const getPersonsSize = require('./personsApi').getPersonsSize
+const persons = require('../modules/persons')
 
 exports.getInfo = (req, res)=>{
     res.send(
         `<h1>Phonebook</h1>
-        <p>The phonebook has info for ${getPersonsSize()} people</p>
+        <p>The phonebook has info for ${persons.getPersonsSize()} people</p>
         <p>${Date().toString()}</p>`
     )
 }
