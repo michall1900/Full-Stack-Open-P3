@@ -17,10 +17,12 @@ app.use(express.json());
 // Only allows requests from http://localhost:3000
 const corsOptions = (req, res) => {
     let corsOptions;
+    console.log(req.header('Origin'));
     if(req.header('Origin') && req.header('Origin').startsWith('http://localhost:3000')) 
         corsOptions = { origin: true };
     else
         corsOptions = { origin: false };
+    callback(null, corsOptions);
 }
 app.use(cors(corsOptions));
 
