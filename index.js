@@ -14,11 +14,11 @@ app.use(express.json());
 
 
 // Middleware for handling CORS
-// Only allows requests from http://localhost:3000
-const corsOptions = (req, res) => {
+// Only allows requests from http://localhost:5173
+const corsOptions = (req, callback) => {
     let corsOptions;
     console.log(req.header('Origin'));
-    if(req.header('Origin') && req.header('Origin').startsWith('http://localhost:3000')) 
+    if(req.header('Origin') && req.header('Origin').startsWith('http://localhost:5173')) 
         corsOptions = { origin: true };
     else
         corsOptions = { origin: false };
