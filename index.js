@@ -12,10 +12,18 @@ const app = express();
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
-// Enable CORS only in development environment
-if (process.env.NODE_ENV === "dev") {
-    app.use(cors());
+
+// Middleware for handling CORS
+// Only allows requests from http://localhost:3000
+const corsOptions = (req, res) => {
+    let corsOptions;
+    if(req.header('Origin') && req.header('Origin').startsWith('http://localhost:3000')) 
+        corsOptions = { origin: true };
+    else
+        corsOptions = { origin: false };
 }
+app.use(cors(corsOptions));
+
 
 // Custom token for Morgan logger to log the request body
 morgan.token('req_body', (req) => JSON.stringify(req.body));
