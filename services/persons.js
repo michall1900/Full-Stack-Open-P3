@@ -24,10 +24,25 @@ let persons = [
 
 let idsSet = new Set()
 
-persons.forEach((person, index)=>{
+persons.forEach((person)=>{
     idsSet.add(person.id)
 })
 
+/**
+ * Validates a person's name according to specific rules.
+ * 
+ * The name must:
+ * - Not be empty.
+ * - Start with an uppercase letter followed by lowercase letters.
+ * - Be separated by spaces if it contains multiple words.
+ * - Not contain numbers or spaces at the start/end.
+ * - Be unique in the phonebook.
+ * 
+ * @param {string} name - The name to validate.
+ * @throws {Error} If the name is missing.
+ * @throws {Error} If the name does not match the required format.
+ * @throws {Error} If the name is not unique in the phonebook.
+ */
 const validateName = (name) => {
     if(!name)
         throw new Error("Name is missing");
@@ -38,6 +53,15 @@ const validateName = (name) => {
         throw new Error(`The name ${name} is already in the phonebook, name must be unique.`)
 }
 
+/**
+ * Validates a phone number.
+ * 
+ * @param {string} number - The phone number to validate.
+ * @throws {Error} If the number is missing.
+ * @throws {Error} If the number does not match the required format.
+ * 
+ * The required format is digits followed by optional groups of digits, each preceded by a hyphen.
+ */
 const validateNumber = (number)=>{
     if(!number)
         throw new Error("Number is missing");
@@ -47,6 +71,13 @@ const validateNumber = (number)=>{
     
 }
 
+/**
+ * Generates a unique identifier.
+ * The identifier is a string representation of a random integer.
+ * Ensures the generated identifier is not already present in the idsSet.
+ *
+ * @returns {string} A unique identifier.
+ */
 const generateId = ()=>{
     let id;
     do{
@@ -55,9 +86,33 @@ const generateId = ()=>{
 
     return id;
 }
+
+/**
+ * 
+ * @returns {number} The number of persons in the phonebook.
+ */
 exports.getPersonsSize= ()=>{
     return persons.length;
 }
+
+/**
+ * Adds a new person to the phonebook.
+ * The required format for number is digits followed by optional groups of digits, each preceded by a hyphen.
+ * The name must:
+ * - Not be empty.
+ * - Start with an uppercase letter followed by lowercase letters.
+ * - Be separated by spaces if it contains multiple words.
+ * - Not contain numbers or spaces at the start/end.
+ * - Be unique in the phonebook.
+ * @param {String} name 
+ * @param {String} number 
+ * @throws {Error} If the name is missing / does not match the required format/ is not unique in the phonebook.
+ * @throws {Error} If the number is missing or not matching the required format.
+ * @returns {Object} newPerson - representing the new person added to the phonebook.
+ * @property {String} newPerson.id - The unique identifier of the new person.
+ * @property {String} newPerson.name - The name of the new person.
+ * @property {String} newPerson.number - The phone number of the new person.
+ */
 exports.addNewPerson = (name, number)=>{
     validateName(name);
     validateNumber(number);
@@ -67,14 +122,38 @@ exports.addNewPerson = (name, number)=>{
     idsSet.add(newPerson.id)
     return newPerson
 }
+
+/**
+ * Get all persons in the phonebook.
+ * @returns {Object[]} persons - an array of all persons in the phonebook.
+ * @property {String} newPerson.id - The unique identifier of the new person.
+ * @property {String} newPerson.name - The name of the new person.
+ * @property {String} newPerson.number - The phone number of the new person.
+ */
 exports.getPersons = ()=>{
     return [...persons]
 }
+
+/**
+ * Find a person by their id.
+ * @param {String} id 
+ * @returns {Object} newPerson - representing the person with the specified id.
+ * @property {String} newPerson.id - The unique identifier of the new person.
+ * @property {String} newPerson.name - The name of the new person.
+ * @property {String} newPerson.number - The phone number of the new person.
+ */
 exports.getPerson = (id)=>{
     return persons.find((person)=>person.id===id);
 }
 
+/**
+ * Deletes a person from the phonebook by its id.
+ * @param {String} id
+ * @throws {Error} If the person with the specified id is already deleted or never added to the phonebook. 
+ */
 exports.deletePerson = (id)=>{
+    if(!idsSet.has(id))
+        throw Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
     persons = persons.filter((person)=>person.id!==id)
     idsSet.delete(id)
 }
