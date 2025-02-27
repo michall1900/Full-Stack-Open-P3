@@ -9,13 +9,21 @@ const morgan = require('morgan');
 
 const app = express();
 
+const frontOrigin = 'http://localhost:5173';
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
-// Enable CORS only in development environment
-if (process.env.NODE_ENV === "dev") {
-    app.use(cors());
+
+// Middleware for handling CORS
+// Only allows requests from frontOrigin
+const corsOptions = (req, callback) => {
+    const reqOrigin = req.header('Origin');
+    let corsOptions ={origin: reqOrigin && reqOrigin.startsWith(frontOrigin)};
+
+    callback(null, corsOptions);
 }
+app.use(cors(corsOptions));
+
 
 // Custom token for Morgan logger to log the request body
 morgan.token('req_body', (req) => JSON.stringify(req.body));
@@ -23,6 +31,9 @@ morgan.token('req_body', (req) => JSON.stringify(req.body));
 // Morgan logger setup to output detailed request and response logs
 app.use(morgan(':date[clf] request {from: :remote-addr, method: :method, to: :url, content-type: :req[content-type], content: :req_body}, response {status: :status, content-length: :res[content-length], response-time: :response-time ms}'));
 
+
+// Static files
+app.use(express.static('dist'))
 // Routes
 const apiRoute = require('./routes/api'); // API route module
 const infoRoute = require('./routes/info'); // Information route module

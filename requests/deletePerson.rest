@@ -1,7 +1,10 @@
-DELETE http://localhost:3001/api/persons/1
+@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+//@baseUrl = http://localhost:3001
+
+DELETE {{baseUrl}}/api/persons/4
 
 ###
 
-DELETE http://localhost:3001/api/persons/4128905768002163
+DELETE {{baseUrl}}/api/persons/4128905768002163
 
 

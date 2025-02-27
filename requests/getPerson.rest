@@ -1,18 +1,21 @@
-GET http://localhost:3001/api/persons/1
+@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+//@baseUrl = http://localhost:3001
+
+GET {{baseUrl}}/api/persons/1
 
 ###
 
-GET http://localhost:3001/api/persons/2
+GET {{baseUrl}}/api/persons/2
 
 ###
 
-GET http://localhost:3001/api/persons/3
+GET {{baseUrl}}/api/persons/3
 
 ###
 
-GET http://localhost:3001/api/persons/4
+GET {{baseUrl}}/api/persons/4
 
 
 ###
 
-GET http://localhost:3001/api/persons/102849710
+GET {{baseUrl}}/api/persons/102849710
