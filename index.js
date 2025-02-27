@@ -31,6 +31,9 @@ morgan.token('req_body', (req) => JSON.stringify(req.body));
 // Morgan logger setup to output detailed request and response logs
 app.use(morgan(':date[clf] request {from: :remote-addr, method: :method, to: :url, content-type: :req[content-type], content: :req_body}, response {status: :status, content-length: :res[content-length], response-time: :response-time ms}'));
 
+
+// Static files
+app.use(express.static('dist'))
 // Routes
 const apiRoute = require('./routes/api'); // API route module
 const infoRoute = require('./routes/info'); // Information route module
