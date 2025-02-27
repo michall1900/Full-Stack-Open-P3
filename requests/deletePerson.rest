@@ -1,7 +1,7 @@
-DELETE http://localhost:3001/api/persons/1
+DELETE https://full-stack-open-p3-f9zw.onrender.com/api/persons/1
 
 ###
 
-DELETE http://localhost:3001/api/persons/4128905768002163
+DELETE https://full-stack-open-p3-f9zw.onrender.com/api/persons/4128905768002163
 
 
