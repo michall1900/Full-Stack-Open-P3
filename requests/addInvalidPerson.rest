@@ -1,4 +1,7 @@
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+//@baseUrl = http://localhost:3001
+
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -8,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -18,7 +21,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -28,7 +31,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -38,7 +41,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -48,7 +51,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -58,7 +61,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -68,7 +71,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -78,7 +81,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -88,7 +91,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -98,7 +101,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -108,7 +111,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -118,7 +121,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -128,7 +131,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -138,7 +141,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
@@ -148,7 +151,7 @@ Content-Type: application/json
 
 ###
 
-POST https://full-stack-open-p3-f9zw.onrender.com/api/persons
+POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {

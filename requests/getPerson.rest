@@ -1,18 +1,21 @@
-GET https://full-stack-open-p3-f9zw.onrender.com/api/persons/1
+@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+//@baseUrl = http://localhost:3001
+
+GET {{baseUrl}}/api/persons/1
 
 ###
 
-GET https://full-stack-open-p3-f9zw.onrender.com/api/persons/2
+GET {{baseUrl}}/api/persons/2
 
 ###
 
-GET https://full-stack-open-p3-f9zw.onrender.com/api/persons/3
+GET {{baseUrl}}/api/persons/3
 
 ###
 
-GET https://full-stack-open-p3-f9zw.onrender.com/api/persons/4
+GET {{baseUrl}}/api/persons/4
 
 
 ###
 
-GET https://full-stack-open-p3-f9zw.onrender.com/api/persons/102849710
+GET {{baseUrl}}/api/persons/102849710

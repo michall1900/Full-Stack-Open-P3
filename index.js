@@ -9,19 +9,17 @@ const morgan = require('morgan');
 
 const app = express();
 
+const frontOrigin = 'http://localhost:5173';
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
 
 // Middleware for handling CORS
-// Only allows requests from http://localhost:5173
+// Only allows requests from frontOrigin
 const corsOptions = (req, callback) => {
-    let corsOptions;
-    console.log(req.header('Origin'));
-    if(req.header('Origin') && req.header('Origin').startsWith('http://localhost:5173')) 
-        corsOptions = { origin: true };
-    else
-        corsOptions = { origin: false };
+    const reqOrigin = req.header('Origin');
+    let corsOptions ={origin: reqOrigin && reqOrigin.startsWith(frontOrigin)};
+
     callback(null, corsOptions);
 }
 app.use(cors(corsOptions));
