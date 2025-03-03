@@ -91,7 +91,7 @@ const generateId = ()=>{
  * 
  * @returns {number} The number of persons in the phonebook.
  */
-exports.getPersonsSize= ()=>{
+const getPersonsSize= ()=>{
     return persons.length;
 }
 
@@ -113,7 +113,7 @@ exports.getPersonsSize= ()=>{
  * @property {String} newPerson.name - The name of the new person.
  * @property {String} newPerson.number - The phone number of the new person.
  */
-exports.addNewPerson = (name, number)=>{
+const addNewPerson = (name, number)=>{
     validateName(name);
     validateNumber(number);
     const id = generateId()
@@ -130,7 +130,7 @@ exports.addNewPerson = (name, number)=>{
  * @property {String} newPerson.name - The name of the new person.
  * @property {String} newPerson.number - The phone number of the new person.
  */
-exports.getPersons = ()=>{
+const getPersons = ()=>{
     return [...persons]
 }
 
@@ -142,7 +142,7 @@ exports.getPersons = ()=>{
  * @property {String} newPerson.name - The name of the new person.
  * @property {String} newPerson.number - The phone number of the new person.
  */
-exports.getPerson = (id)=>{
+const getPerson = (id)=>{
     return persons.find((person)=>person.id===id);
 }
 
@@ -151,10 +151,12 @@ exports.getPerson = (id)=>{
  * @param {String} id
  * @throws {Error} If the person with the specified id is already deleted or never added to the phonebook. 
  */
-exports.deletePerson = (id)=>{
+const deletePerson = (id)=>{
     if(!idsSet.has(id))
         throw Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
     persons = persons.filter((person)=>person.id!==id)
     idsSet.delete(id)
 }
+
+module.exports = {getPerson, deletePerson, addNewPerson, getPersons, getPersonsSize}
 

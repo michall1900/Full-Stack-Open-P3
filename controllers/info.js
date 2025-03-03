@@ -1,4 +1,4 @@
-const persons = require('../services/persons');
+const {getPersonsSize} = require('../services/persons');
 
 /**
  * Sends information about the phonebook as HTML.
@@ -6,10 +6,12 @@ const persons = require('../services/persons');
  * @param {Object} req - The HTTP request object. Not used in the function but required by the route handling.
  * @param {Object} res - The HTTP response object. Sends an HTML response with the phonebook information.
  */
-exports.getInfo = (req, res) => {
+const getInfo = (req, res) => {
     res.send(
         `<h1>Phonebook</h1>
         <p>The phonebook has info for ${persons.getPersonsSize()} people</p>
         <p>${new Date().toString()}</p>`
     );
 };
+
+module.exports = {getInfo}

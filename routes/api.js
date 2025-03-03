@@ -5,7 +5,7 @@
 
 const express = require('express');
 const router = express.Router();
-const persons = require('../controllers/personsApi'); // Importing controller functions for persons
+const {getPersons, getPerson, postPerson, deletePerson} = require('../controllers/personsApi'); // Importing controller functions for persons
 
 /**
  * Route serving a list of all persons.
@@ -17,7 +17,7 @@ const persons = require('../controllers/personsApi'); // Importing controller fu
  * @param {express.Response} res - The response object.
  * Uses the getPersons method from the persons controller.
  */
-router.get('/', persons.getPersons);
+router.get('/', getPersons);
 
 /**
  * Route serving a single person by ID.
@@ -29,7 +29,7 @@ router.get('/', persons.getPersons);
  * @param {express.Response} res - The response object.
  * Uses the getPerson method from the persons controller.
  */
-router.get('/:id', persons.getPerson);
+router.get('/:id', getPerson);
 
 /**
  * Route for creating a new person.
@@ -41,7 +41,7 @@ router.get('/:id', persons.getPerson);
  * @param {express.Response} res - The response object.
  * Uses the postPerson method from the persons controller.
  */
-router.post('/', persons.postPerson);
+router.post('/', postPerson);
 
 /**
  * Route for deleting a person by ID.
@@ -53,6 +53,6 @@ router.post('/', persons.postPerson);
  * @param {express.Response} res - The response object.
  * Uses the deletePerson method from the persons controller.
  */
-router.delete('/:id', persons.deletePerson);
+router.delete('/:id', deletePerson);
 
 module.exports = router;

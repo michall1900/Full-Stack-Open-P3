@@ -5,7 +5,7 @@
 
 const express = require('express');
 const router = express.Router();
-const info = require('../controllers/info'); // Importing the controller function for information retrieval
+const {getInfo} = require('../controllers/info'); // Importing the controller function for information retrieval
 
 /**
  * Route serving general information about the application.
@@ -17,6 +17,6 @@ const info = require('../controllers/info'); // Importing the controller functio
  * @param {express.Response} res - The response object.
  * Uses the getInfo method from the info controller to provide application information.
  */
-router.get('/', info.getInfo);
+router.get('/', getInfo);
 
 module.exports = router;
