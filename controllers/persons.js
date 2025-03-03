@@ -11,18 +11,11 @@ const getPersons = async (req, res) => {
     // res.json(persons.getPersons());
     try{
         const Person = await getPersonModel()
-        Person.find({})
-        .then(phonebook=>{
-            res.json(phonebook)
-        })
-        .catch(error=>{
-            console.log(error)
-            res.status(404).json({error: `There was an error while fetching persons. Error: ${error.message}`})
-        })
+        const phonebook = await Person.find({})
+        res.json(phonebook)
     }
     catch(error){
-        console.log(error)
-        res.status(500).json({error: error.message})
+        res.status(404).json({error: error.message || "There was an error while fetching persons."})
     }
 };
 
@@ -61,15 +54,28 @@ const deletePerson = (req, res) => {
  * @param {Object} req - The HTTP request object, expects 'name' and 'number' in the request body.
  * @param {Object} res - The HTTP response object. Returns the added person as a JSON object or a 400 error if input is invalid.
  */
-const postPerson = (req, res) => {
-    try {
+const postPerson = async (req, res) => {
+    // try {
+    //     if (!req.body) {
+    //         throw new Error("The content is missing.");
+    //     }
+    //     const person = persons.addNewPerson(req.body.name, req.body.number);
+    //     res.json(person);
+    // } catch (error) {
+    //     res.status(400).json({error: `${error}`});
+    // }
+    try{
         if (!req.body) {
             throw new Error("The content is missing.");
         }
-        const person = persons.addNewPerson(req.body.name, req.body.number);
-        res.json(person);
-    } catch (error) {
-        res.status(400).json({error: `${error}`});
+        const Person = await getPersonModel()
+        const newPerson = new Person ({name: req.body.name, number: req.body.number})
+        const receivedPerson = await newPerson.save(newPerson)
+        res.json(receivedPerson)
+
+    }   
+    catch (error){
+        res.status(400).json({error: error.message || `There was a problem while adding new person to the phonebook.`})
     }
 };
 
