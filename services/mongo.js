@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-console.log("here")
+
 const Indexes = Object.freeze({"PASSWORD":2 , "NAME": 3, "NUMBER": 4})
 const NUM_OF_VALUES = 5;
 const NUM_OF_VALUES_FOR_GET_REQUESTS = 3;

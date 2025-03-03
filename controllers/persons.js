@@ -1,12 +1,29 @@
+require('dotenv').config()
 const persons = require('../services/persons');
-
+const {getPersonModel} = require('../models/person');
+const { response } = require('express');
 /**
  * Retrieves and sends a list of all persons in the phonebook.
  * @param {Object} req - The HTTP request object.
  * @param {Object} res - The HTTP response object. Returns a JSON list of persons.
  */
-const getPersons = (req, res) => {
-    res.json(persons.getPersons());
+const getPersons = async (req, res) => {
+    // res.json(persons.getPersons());
+    try{
+        const Person = await getPersonModel()
+        Person.find({})
+        .then(phonebook=>{
+            res.json(phonebook)
+        })
+        .catch(error=>{
+            console.log(error)
+            res.status(404).json({error: `There was an error while fetching persons. Error: ${error.message}`})
+        })
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({error: error.message})
+    }
 };
 
 /**
