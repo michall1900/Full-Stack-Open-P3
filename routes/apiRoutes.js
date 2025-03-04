@@ -5,7 +5,7 @@
 
 const express = require('express');
 const router = express.Router();
-const {getPersons, getPerson, postPerson, deletePerson} = require('../controllers/persons'); // Importing controller functions for persons
+const {getPersons, getPerson, postPerson, deletePerson} = require('../controllers/personsController'); // Importing controller functions for persons
 
 /**
  * Route serving a list of all persons.
