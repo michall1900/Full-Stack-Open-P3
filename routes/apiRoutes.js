@@ -5,7 +5,11 @@
 
 const express = require('express');
 const router = express.Router();
+const getModel = require('../middlewares/getPersonModel')
 const {getPersons, getPerson, postPerson, deletePerson} = require('../controllers/personsController'); // Importing controller functions for persons
+
+
+router.use(getModel)
 
 /**
  * Route serving a list of all persons.

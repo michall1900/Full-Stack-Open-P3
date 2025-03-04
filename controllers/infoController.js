@@ -9,7 +9,7 @@ const {getPersonsSize} = require('../services/persons');
 const getInfo = (req, res) => {
     res.send(
         `<h1>Phonebook</h1>
-        <p>The phonebook has info for ${persons.getPersonsSize()} people</p>
+        <p>The phonebook has info for ${getPersonsSize()} people</p>
         <p>${new Date().toString()}</p>`
     );
 };

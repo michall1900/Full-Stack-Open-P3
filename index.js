@@ -6,11 +6,12 @@
 const express = require('express')
 const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
+const {unknownEndpoint, errorIdHandler, errorHandler} = require('./middlewares/errors')
 const app = express()
 
 const apiRoute = require('./routes/apiRoutes'); // API route module
 const infoRoute = require('./routes/infoRoutes'); // Information route module
-const unknownEndpointRoute = require('./routes/errorsRoutes') 
+ 
 
 
 app.use(express.json())
@@ -23,7 +24,9 @@ app.use(express.static('dist'))
 // Use API and info routes
 app.use('/api/persons', apiRoute)
 app.use('/info', infoRoute)
-app.use(unknownEndpointRoute)
+app.use(unknownEndpoint)
+app.use(errorIdHandler)
+app.use(errorHandler)
 
 
 // Server setup
