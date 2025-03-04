@@ -40,12 +40,23 @@ const getPerson = (req, res) => {
  * @param {Object} req - The HTTP request object, expects an ID parameter.
  * @param {Object} res - The HTTP response object. Sends a 204 status code on success or a 404 error if the person cannot be found.
  */
-const deletePerson = (req, res) => {
-    try {
-        persons.deletePerson(req.params.id);
+const deletePerson = async (req, res) => {
+    // try {
+    //     persons.deletePerson(req.params.id);
+    //     res.status(204).end();
+    // } catch (error) {
+    //     res.status(404).json({error: `${error}`});
+    // }
+    try{
+        const Person = await getPersonModel()
+        const id = req.params.id
+        const result = await Person.findByIdAndDelete(id)
+        if(!result)
+            throw new Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
         res.status(204).end();
-    } catch (error) {
-        res.status(404).json({error: `${error}`});
+    }
+    catch(error){
+        res.status(404).json({error: error.message || "There was an error while deleting persons."})
     }
 };
 
