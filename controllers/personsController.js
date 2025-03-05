@@ -1,8 +1,3 @@
-require('dotenv').config()
-const persons = require('../services/persons');
-
-
-
 /**
  * Retrieves and sends a list of all persons in the phonebook.
  * @param {Object} req - The HTTP request object.
@@ -25,7 +20,7 @@ const getPersons = async (req, res, next) => {
  * @param {Object} res - The HTTP response object. Returns a JSON object of a person or a 404 error if not found.
  */
 const getPerson = async (req, res, next) => {
-    
+
     try{
         const person = await req.Person.findById(req.params.id)
         if(!person){
@@ -79,16 +74,20 @@ const postPerson = async (req, res, next) => {
     }
 };
 
-const updatePerson = async (req, res, next)=>{
-    try{
-        const recievedPerson = {name: req.body.name, number:req.body.number}
-        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, recievedPerson, {new: true, runValidators: true})
+/**
+ * Updates an existing person in the phonebook and sends the updated person object.
+ * @param {Object} req - The HTTP request object, expects 'name' and 'number' in the request body and an ID parameter.
+ * @param {Object} res - The HTTP response object. Returns the updated person as a JSON object or a 400 error if input is invalid.
+ */
+const updatePerson = async (req, res, next) => {
+    try {
+        const recievedPerson = { name: req.body.name, number: req.body.number }
+        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, recievedPerson, { new: true, runValidators: true })
         res.json(updatedPerson)
-    }
-    catch (error){
+    } catch (error) {
         error.status = 400
         next(error)
     }
 }
 
-module.exports = {getPersons, getPerson, deletePerson, postPerson, updatePerson}
+module.exports = { getPersons, getPerson, deletePerson, postPerson, updatePerson }

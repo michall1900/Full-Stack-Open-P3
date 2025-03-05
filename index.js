@@ -3,6 +3,7 @@
  * Sets up middleware and routes for handling requests.
  */
 
+require('dotenv').config()
 const express = require('express')
 const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
@@ -12,23 +13,19 @@ const app = express()
 const apiRoute = require('./routes/apiRoutes'); // API route module
 const infoRoute = require('./routes/infoRoutes'); // Information route module
  
-
-
-app.use(express.json())
-app.use(corsMiddleware)
-app.use(requestsLogger)
-app.use(express.static('dist'))
-
-
+// Middleware setup
+app.use(express.json()) // Parse JSON bodies
+app.use(corsMiddleware) // Enable CORS
+app.use(requestsLogger) // Log requests
+app.use(express.static('dist')) // Serve static files
 
 // Use API and info routes
-app.use('/api/persons', apiRoute)
-app.use('/info', infoRoute)
-app.use(unknownEndpoint)
-app.use(idErrorHandler)
-app.use(duplicateErrorHandler)
-app.use(errorHandler)
-
+app.use('/api/persons', apiRoute) // API routes for persons
+app.use('/info', infoRoute) // Route for info
+app.use(unknownEndpoint) // Handle unknown endpoints
+app.use(idErrorHandler) // Handle ID errors
+app.use(duplicateErrorHandler) // Handle duplicate errors
+app.use(errorHandler) // General error handler
 
 // Server setup
 const PORT = process.env.PORT || 3001

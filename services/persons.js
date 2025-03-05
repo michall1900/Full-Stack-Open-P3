@@ -1,4 +1,6 @@
-
+/**
+ * This service is not in use anymore.
+ */
 let persons = [
     { 
       "id": "1",

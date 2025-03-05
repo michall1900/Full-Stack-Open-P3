@@ -1,3 +1,9 @@
+/**
+ * Middleware for logging HTTP requests using the morgan library.
+ * 
+ * @module middlewares/requestLogger
+ * @requires morgan
+ */
 const morgan = require('morgan');
 
 // Custom token for Morgan logger to log the request body

@@ -1,3 +1,7 @@
+/**
+ * This service is not in use anymore.
+ */
+
 const mongoose = require('mongoose');
 
 const Indexes = Object.freeze({"PASSWORD":2 , "NAME": 3, "NUMBER": 4})
