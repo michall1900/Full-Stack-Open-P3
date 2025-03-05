@@ -1,0 +1,50 @@
+//@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+@baseUrl = http://localhost:3001
+
+PUT {{baseUrl}}/api/persons/67c610dbeff0dbc069ec8760
+Content-Type: application/json
+
+{
+    "name":"John Snow Snow",
+    "number":"567-890"
+}
+
+###
+
+PUT {{baseUrl}}/api/persons/67c610db
+Content-Type: application/json
+
+{
+    "name":"John Snow Snow",
+    "number":"567-890"
+}
+
+###
+
+PUT {{baseUrl}}/api/persons/67c81f79dbc1d2413e89461a
+Content-Type: application/json
+
+{
+    "name":"John Snow Snow",
+    "number":""
+}
+
+###
+
+PUT {{baseUrl}}/api/persons/67c81f79dbc1d2413e89461a
+Content-Type: application/json
+
+{
+    "name":"",
+    "number":"567-890"
+}
+
+###
+
+PUT {{baseUrl}}/api/persons/67c81f79dbc1d2413e89461a
+Content-Type: application/json
+
+{
+    "name":"John Smith",
+    "number":"567-890"
+}

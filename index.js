@@ -6,7 +6,7 @@
 const express = require('express')
 const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
-const {unknownEndpoint, errorIdHandler, errorHandler} = require('./middlewares/errors')
+const {unknownEndpoint,idErrorHandler, errorHandler, duplicateErrorHandler} = require('./middlewares/errors')
 const app = express()
 
 const apiRoute = require('./routes/apiRoutes'); // API route module
@@ -25,7 +25,8 @@ app.use(express.static('dist'))
 app.use('/api/persons', apiRoute)
 app.use('/info', infoRoute)
 app.use(unknownEndpoint)
-app.use(errorIdHandler)
+app.use(idErrorHandler)
+app.use(duplicateErrorHandler)
 app.use(errorHandler)
 
 

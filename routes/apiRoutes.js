@@ -6,8 +6,8 @@
 const express = require('express');
 const router = express.Router();
 const getModel = require('../middlewares/getPersonModel')
-const {getPersons, getPerson, postPerson, deletePerson} = require('../controllers/personsController'); // Importing controller functions for persons
-
+const {getPersons, getPerson, postPerson, deletePerson, updatePerson} = require('../controllers/personsController'); // Importing controller functions for persons
+const isBodyExist = require('../middlewares/isBodyExist')
 
 router.use(getModel)
 
@@ -45,7 +45,7 @@ router.get('/:id', getPerson);
  * @param {express.Response} res - The response object.
  * Uses the postPerson method from the persons controller.
  */
-router.post('/', postPerson);
+router.post('/',isBodyExist, postPerson);
 
 /**
  * Route for deleting a person by ID.
@@ -58,5 +58,8 @@ router.post('/', postPerson);
  * Uses the deletePerson method from the persons controller.
  */
 router.delete('/:id', deletePerson);
+
+
+router.put('/:id',isBodyExist, updatePerson)
 
 module.exports = router;

@@ -64,9 +64,6 @@ const deletePerson = async (req, res, next) => {
  */
 const postPerson = async (req, res, next) => {
     try{
-        if (!req.body) {
-            throw new Error("The content is missing.");
-        }
         const newPerson = new req.Person ({name: req.body.name, number: req.body.number})
         const receivedPerson = await newPerson.save(newPerson)
         res.json(receivedPerson)
@@ -79,4 +76,16 @@ const postPerson = async (req, res, next) => {
     }
 };
 
-module.exports = {getPersons, getPerson, deletePerson, postPerson}
+const updatePerson = async (req, res, next)=>{
+    try{
+        const recievedPerson = {name: req.body.name, number:req.body.number}
+        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, recievedPerson, {new: true, runValidators: true})
+        res.json(updatedPerson)
+    }
+    catch (error){
+        error.status = 400
+        next(error)
+    }
+}
+
+module.exports = {getPersons, getPerson, deletePerson, postPerson, updatePerson}

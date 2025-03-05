@@ -11,10 +11,18 @@ const unknownEndpoint =  (req, res, next) => {
     next(error)
 };
 
-const errorIdHandler = (error, req, res, next)=>{
+const idErrorHandler = (error, req, res, next)=>{
     if(error.name === 'CastError'){
         error.status = 400
         error.message = 'malformatted id'
+    }
+    next(error)
+}
+
+const duplicateErrorHandler = (error, req, res, next)=>{
+    if(error.code && error.code === 11000){
+        error.status = 400
+        error.message = 'The name is already exist inside the phonebook.'
     }
     next(error)
 }
@@ -24,4 +32,4 @@ const errorHandler = (error, req, res, next)=>{
     res.status(error.status || 500).json({error: `${(error.name !== "Error")? `${error.name} `:""}${error.message}`})
 }
 
-module.exports = {unknownEndpoint, errorIdHandler, errorHandler}
+module.exports = {unknownEndpoint, idErrorHandler, errorHandler, duplicateErrorHandler}

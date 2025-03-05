@@ -1,7 +1,7 @@
 //@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
 @baseUrl = http://localhost:3001
 
-DELETE {{baseUrl}}/api/persons/67c472681fac2ffcd6798339
+DELETE {{baseUrl}}/api/persons/67c610dbeff0dbc069ec8760
 
 ###
 
