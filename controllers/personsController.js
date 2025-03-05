@@ -82,7 +82,8 @@ const postPerson = async (req, res, next) => {
 const updatePerson = async (req, res, next) => {
     try {
         const recievedPerson = { name: req.body.name, number: req.body.number }
-        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, recievedPerson, { new: true, runValidators: true })
+        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, 
+            recievedPerson, { new: true, runValidators: true, context: 'query' })
         res.json(updatedPerson)
     } catch (error) {
         error.status = 400
