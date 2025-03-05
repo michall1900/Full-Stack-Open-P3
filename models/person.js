@@ -5,27 +5,48 @@ const mongoose = require('mongoose');
 let Person = null
 
 /**
- * Creates a Mongoose schema for a person.
+ * Validates a phone number to ensure it meets the following criteria:
+ * - It is not empty.
+ * - It has a length of at least 8 characters.
+ * - It matches the pattern of 2 or 3 digits followed by a hyphen and then one or more digits.
+ *
+ * @param {string} number - The phone number to validate.
+ * @returns {boolean} - Returns true if the number is valid, otherwise false.
+ */
+const customNumberValidation = (number)=>{
+    return number && number.length >= 8 && number.match(/^[0-9]{2,3}-[0-9]+$/)
+}
+
+
+/**
+ * Creates a Mongoose schema for the Person model.
  * 
- * The schema defines the following fields:
- * - `name`: A string that is unique, required, and must start with an uppercase letter followed by lowercase letters. 
- *           It can contain multiple words separated by spaces, but no numbers or spaces at the start/end.
- * - `number`: A string that is required and must start with digits, followed by optional groups of digits each preceded by a hyphen.
+ * The schema includes the following fields:
+ * - `name`: A string that must be unique, required, and match a specific pattern.
+ *   The pattern enforces that the name should start with an uppercase letter followed by lowercase letters,
+ *   and can include multiple words separated by spaces. The minimum length is 3 characters.
+ * - `number`: A string that is required and must pass a custom validation function.
+ *   The validation ensures that the number starts with 2-3 digits, followed by a hyphen, and then more digits.
+ *   The number should be with a minimum length of 8 characters.
  * 
- * @returns {mongoose.Schema} The Mongoose schema for a person.
+ * @returns {mongoose.Schema} The Mongoose schema for the Person model.
  */
 const createSchema = ()=>{
     return new mongoose.Schema({
         name:{
             type: String,
             unique: true,
-            required: "The person's name is required",
-            match: [/^[A-Z][a-z]*([ ][A-Z][a-z]*)*$/, "The name should start with an uppercase letter followed by lowercase letters, separated by a space. No numbers at all or spaces at the start/end."]
+            required: true,
+            match: [/^[A-Z][a-z]*([ ][A-Z][a-z]*)*$/, "The name should start with an uppercase letter followed by lowercase letters, separated by a space. No numbers at all or spaces at the start/end."],
+            minLength: 3
         },
         number:{
             type:String,
-            required: "Number is missing",
-            match: [/^\d+(-\d+)*$/,"The number should start with digits, followed by optional groups of digits each preceded by a hyphen."]
+            required: [true, "Number is missing"],
+            validate:{
+                validator: customNumberValidation,
+                message: props => `${props.value} is not a valid phone number! A valid phone number should start with 2-3 digits, followed by a hyphen, and then more digits.`
+            }
         }
     })
         

@@ -178,6 +178,12 @@ npm run start
       ```
 
 - **POST /api/persons**: Adds a new person.
+  You should give a valid phonenumber and name.
+   * `name`: A string that must be unique, required, and match a specific pattern.
+      The pattern enforces that the name should start with an uppercase letter followed by lowercase letters, and can include multiple words separated by spaces. The minimum length is 3 characters.
+  * `number`: A string that is required and must pass a custom validation function.
+    The validation ensures that the number starts with 2-3 digits, followed by a hyphen, and then more digits.Also, the number should be with a minimum length of 8 characters.
+
   - **Request Body**:
     ```json
     {
