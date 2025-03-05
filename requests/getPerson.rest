@@ -1,11 +1,11 @@
-@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
-//@baseUrl = http://localhost:3001
+//@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+@baseUrl = http://localhost:3001
 
-GET {{baseUrl}}/api/persons/1
+GET {{baseUrl}}/api/persons/67c610f0eff0dbc069ec8764
 
 ###
 
-GET {{baseUrl}}/api/persons/2
+GET {{baseUrl}}/api/persons/67c610f0eff0dbc069ec8761
 
 ###
 

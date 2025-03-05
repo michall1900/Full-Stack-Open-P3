@@ -24,14 +24,18 @@ const getPersons = async (req, res, next) => {
  * @param {Object} req - The HTTP request object, expects an ID parameter.
  * @param {Object} res - The HTTP response object. Returns a JSON object of a person or a 404 error if not found.
  */
-const getPerson = (req, res, next) => {
-    const id = req.params.id;
-    const person = persons.getPerson(id);
+const getPerson = async (req, res, next) => {
     
-    if (person) {
-        res.json(person);
-    } else {
-        res.status(404).json({error: `There is no person with id = ${id}.`});
+    try{
+        const person = await req.Person.findById(req.params.id)
+        if(!person){
+            throw new Error(`There is no person with id = ${req.params.id}.`)
+        }
+        res.json(person)
+    }
+    catch (error){
+        error.status = 404
+        next(error)
     }
 };
 
@@ -72,7 +76,6 @@ const postPerson = async (req, res, next) => {
     catch (error){
         error.status = 400
         next(error)
-        //res.status(400).json({error: error.message || `There was a problem while adding new person to the phonebook.`})
     }
 };
 
