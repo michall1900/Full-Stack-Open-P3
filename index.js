@@ -7,7 +7,7 @@ require('dotenv').config()
 const express = require('express')
 const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
-const {unknownEndpoint,idErrorHandler, errorHandler, duplicateErrorHandler} = require('./middlewares/errors')
+const {unknownEndpoint,idErrorHandler, validationErrorHandler, duplicateErrorHandler} = require('./middlewares/errors')
 const app = express()
 
 const apiRoute = require('./routes/apiRoutes'); // API route module
@@ -25,7 +25,7 @@ app.use('/info', infoRoute) // Route for info
 app.use(unknownEndpoint) // Handle unknown endpoints
 app.use(idErrorHandler) // Handle ID errors
 app.use(duplicateErrorHandler) // Handle duplicate errors
-app.use(errorHandler) // General error handler
+app.use(validationErrorHandler) // General error handler
 
 // Server setup
 const PORT = process.env.PORT || 3001

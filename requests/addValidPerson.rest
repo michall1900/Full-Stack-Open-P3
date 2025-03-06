@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow Snow",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -16,5 +16,5 @@ Content-Type: application/json
 
 {
     "name":"John Aa",
-    "number":"123-456-789"
+    "number":"123-456789"
 }

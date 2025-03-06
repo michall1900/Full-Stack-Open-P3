@@ -1,5 +1,5 @@
-@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
-//@baseUrl = http://localhost:3001
+//@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+@baseUrl = http://localhost:3001
 
 POST {{baseUrl}}/api/persons
 Content-Type: application/json
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "name":"Ada Lovelace",
-    "number":"39-44-5323523"
+    "number":"39-445323523"
 }
 
 

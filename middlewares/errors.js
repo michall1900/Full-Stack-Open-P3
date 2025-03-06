@@ -2,16 +2,14 @@
 
 /**
  * Middleware to handle unknown endpoints.
- * Creates an error with a 404 status and passes it to the next middleware.
+ * Responds with a 404 status code and an error message.
  *
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function.
  */
-const unknownEndpoint =  (req, res, next) => {
-    const error = new Error("Unknown Endpoint")
-    error.status = 404
-    next(error)
+const unknownEndpoint =  (req, res) => {
+    res.status(404).send({error: 'unknown endpoint'})
 };
 
 /**
@@ -22,46 +20,55 @@ const unknownEndpoint =  (req, res, next) => {
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function.
  * 
- * If the error is a CastError, it sets the status to 400 and the message to 'malformatted id'.
+ * @returns {Object} - Returns a JSON response with an error message if the error is a CastError.
  */
 const idErrorHandler = (error, req, res, next)=>{
+    console.error(`${error.name}: ${error.message}`)
     if(error.name === 'CastError'){
-        error.status = 400
-        error.message = 'malformatted id'
+        return res.status(400).json({error: `malformatted id`})
     }
     next(error)
 }
 
 /**
  * Middleware to handle duplicate key errors in MongoDB.
- * If a duplicate key error is detected, it sets the status to 400 and
- * provides a custom error message indicating that the name already exists in the phonebook.
+ * If a duplicate key error is detected, it responds with a 400 status code and an error message.
+ * Otherwise, it passes the error to the next middleware.
  *
  * @param {Object} error - The error object.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function.
+ * 
+ * @returns {Object} - Returns a JSON response with an error message if the error is a duplicate key error.
  */
 const duplicateErrorHandler = (error, req, res, next)=>{
     if(error.code && error.code === 11000){
-        error.status = 400
-        error.message = 'The name is already exist inside the phonebook.'
+        return res.status(400).json({error: `'${(req.body && req.body.name)?req.body.name: "The name" }' is already exist inside the phonebook.`})
     }
     next(error)
 }
 
 /**
- * Middleware function to handle errors in the application.
- * Logs the error to the console and sends a JSON response with the error message.
- *
- * @param {Error} error - The error object.
+ * Middleware to handle validation errors.
+ * If a validation error is detected, it responds with a 400 status code and an error message.
+ * Otherwise, it passes the error to the next middleware.
+ * 
+ * @param {Object} error - The error object.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function.
+ * 
+ * @returns {Object} - Returns a JSON response with an error message if the error is a validation error.
  */
-const errorHandler = (error, req, res, next)=>{
-    console.error(error)
-    res.status(error.status || 500).json({error: `${(error.name !== "Error")? `${error.name} `:""}${error.message}`})
+const validationErrorHandler = (error, req, res, next)=>{
+    if(error.name === 'ValidationError'){
+        return res.status(400).json({error: error.message})
+    }
+    else if(error.name === "Error"){
+        return res.status(404).json({error: error.message})
+    }
+    next(error)
 }
 
-module.exports = {unknownEndpoint, idErrorHandler, errorHandler, duplicateErrorHandler}
+module.exports = {unknownEndpoint, idErrorHandler, validationErrorHandler, duplicateErrorHandler}

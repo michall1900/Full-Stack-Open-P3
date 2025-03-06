@@ -9,7 +9,6 @@ const getPersons = async (req, res, next) => {
         res.json(phonebook)
     }
     catch(error){
-        error.status = 500
         next(error)
     }
 };
@@ -29,7 +28,6 @@ const getPerson = async (req, res, next) => {
         res.json(person)
     }
     catch (error){
-        error.status = 404
         next(error)
     }
 };
@@ -46,12 +44,10 @@ const deletePerson = async (req, res, next) => {
         const result = await req.Person.findByIdAndDelete(id)
         if(!result){
             throw new Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
-            
         }
         res.status(204).end();
     }
     catch(error){
-        error.status= 404
         next(error)
     }
 };
@@ -69,7 +65,6 @@ const postPerson = async (req, res, next) => {
 
     }   
     catch (error){
-        error.status = 400
         next(error)
     }
 };
@@ -86,7 +81,6 @@ const updatePerson = async (req, res, next) => {
             recievedPerson, { new: true, runValidators: true, context: 'query' })
         res.json(updatedPerson)
     } catch (error) {
-        error.status = 400
         next(error)
     }
 }
