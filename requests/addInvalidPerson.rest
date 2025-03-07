@@ -1,12 +1,31 @@
-@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
-//@baseUrl = http://localhost:3001
+//@baseUrl = https://full-stack-open-p3-f9zw.onrender.com
+@baseUrl = http://localhost:3001
 
 POST {{baseUrl}}/api/persons
 Content-Type: application/json
 
 {
+    "name":"Ar",
+    "number":"123-456789"
+}
+
+###
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+    "name":"Ada Lovelace",
+    "number":"39-445323523"
+}
+
+
+###
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
     "name":"Arto Hellas",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -16,7 +35,7 @@ Content-Type: application/json
 
 {
     "name":"  John Snow",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -26,7 +45,7 @@ Content-Type: application/json
 
 {
     "name":"John      Snow",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -36,7 +55,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow    ",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -46,7 +65,7 @@ Content-Type: application/json
 
 {
     "name":"john snow",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -56,7 +75,7 @@ Content-Type: application/json
 
 {
     "name":"Joh@n Snow",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -66,7 +85,7 @@ Content-Type: application/json
 
 {
     "name":"John SnowA",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -76,7 +95,7 @@ Content-Type: application/json
 
 {
 
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -86,7 +105,7 @@ Content-Type: application/json
 
 {
     "name":"",
-    "number":"123-456-789"
+    "number":"123-456789"
 }
 
 ###
@@ -96,7 +115,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow",
-    "number":"   102947"
+    "number":"123 -   102947"
 }
 
 ###
@@ -116,7 +135,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow",
-    "number":"111    2222"
+    "number":"111  -  22222"
 }
 
 ###
@@ -126,7 +145,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow",
-    "number":" 111-2222"
+    "number":" 111-22222"
 }
 
 ###
@@ -136,7 +155,7 @@ Content-Type: application/json
 
 {
     "name":"John Snow",
-    "number":"1112222 "
+    "number":"11122222 "
 }
 
 ###
@@ -156,4 +175,14 @@ Content-Type: application/json
 
 {
     "name":"John Snow"
+}
+
+###
+
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+    "name":"John Snow",
+    "number":"111-222"
 }
