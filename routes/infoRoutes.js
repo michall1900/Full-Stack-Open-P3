@@ -3,9 +3,9 @@
  * This module sets up the router and associates the informational route with its controller function.
  */
 
-const express = require('express');
-const router = express.Router();
-const {getInfo} = require('../controllers/infoController'); // Importing the controller function for information retrieval
+const express = require('express')
+const router = express.Router()
+const { getInfo } = require('../controllers/infoController') // Importing the controller function for information retrieval
 const getModel = require('../middlewares/getPersonModel')
 
 /**
@@ -31,6 +31,6 @@ router.use(getModel)
  * @param {express.Response} res - The response object.
  * Uses the getInfo method from the info controller to provide application information.
  */
-router.get('/', getInfo);
+router.get('/', getInfo)
 
-module.exports = router;
+module.exports = router

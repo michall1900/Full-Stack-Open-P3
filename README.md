@@ -132,9 +132,9 @@ npm run start
     ```json
     [
       {
-        "id": 1,
+        "id": "<mongoID>",
         "name": "John Doe",
-        "number": "123-456-7890"
+        "number": "123-4567890"
       },
       ...
     ]
@@ -152,9 +152,9 @@ npm run start
     - **200 OK**: A person object.
     ```json
     {
-      "id": 1,
+      "id": "<ID>",
       "name": "John Doe",
-      "number": "123-456-7890"
+      "number": "123-4567890"
     }
     ```
     - **404 Not Found**: If the person with the specified ID does not exist.
@@ -188,16 +188,16 @@ npm run start
     ```json
     {
       "name": "John Doe",
-      "number": "123-456-7890"
+      "number": "123-4567890"
     }
     ```
   - **Response**:
-    - **201 Created**: The created person object.
+    - **200 OK**: The created person object.
     ```json
     {
-      "id": 2,
+      "id": "<mongoID>",
       "name": "John Doe",
-      "number": "123-456-7890"
+      "number": "123-4567890"
     }
     ```
     - **400 Bad Request**: If the name or number is missing or already exists.
@@ -258,16 +258,16 @@ npm run start
     ```json
     {
       "name": "John Doe",
-      "number": "123-456-7890"
+      "number": "123-4567890"
     }
     ```
     - **Response**:
     - **200 OK**: The updated person object.
     ```json
     {
-      "id": 1,
+      "id": "<mongoID>",
       "name": "John Doe",
-      "number": "123-456-7890"
+      "number": "123-4567890"
     }
     ```
     - **404 Not Found**: If the person with the specified ID does not exist.
@@ -323,16 +323,16 @@ npm run start
 
 ### Error Handling
 
-- **unknownEndpoint**: Middleware for handling requests to unknown endpoints, returning a 404 error.
+- **unknownEndpoint**: Middleware to handle unknown endpoints.
   - **Response**:
     - **404 Not Found**: If the endpoint does not exist.
     ```json
     {
-      "error": "Unknown Endpoint"
+      "error": "unknown endpoint"
     }
     ```
 
-- **idErrorHandler**: Middleware for handling errors related to invalid IDs.
+- **idErrorHandler**: Middleware to handle errors related to invalid IDs.
   - **Response**:
     - **400 Bad Request**: If the ID is malformatted.
     ```json
@@ -341,17 +341,24 @@ npm run start
     }
     ```
 
-- **duplicateErrorHandler**: Middleware for handling duplicate key errors in MongoDB.
+- **duplicateErrorHandler**: Middleware to handle duplicate key errors in MongoDB.
   - **Response**:
     - **400 Bad Request**: If a duplicate key error is detected.
     ```json
     {
-      "error": "The name is already exist inside the phonebook."
+      "error": "'<name>' is already exist inside the phonebook."
     }
     ```
 
-- **errorHandler**: Middleware for handling general errors in the application.
-  - **500 Internal Server Error (or another status thrown by other routes)**: If an unexpected error occurs.
+- **validationErrorHandler**: Middleware to handle validation errors.
+  - **Response**:
+    - **400 Bad Request**: If a validation error is detected.
+    ```json
+    {
+      "error": "<Validation error message>"
+    }
+    ```
+    - **404 Not Found**: If a general error occurs.
     ```json
     {
       "error": "<Error message>"

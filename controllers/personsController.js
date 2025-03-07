@@ -4,14 +4,14 @@
  * @param {Object} res - The HTTP response object. Returns a JSON list of persons.
  */
 const getPersons = async (req, res, next) => {
-    try{
-        const phonebook = await req.Person.find({})
-        res.json(phonebook)
-    }
-    catch(error){
-        next(error)
-    }
-};
+  try {
+    const phonebook = await req.Person.find({})
+    res.json(phonebook)
+  }
+  catch (error) {
+    next(error)
+  }
+}
 
 /**
  * Retrieves and sends a specific person by ID.
@@ -20,17 +20,17 @@ const getPersons = async (req, res, next) => {
  */
 const getPerson = async (req, res, next) => {
 
-    try{
-        const person = await req.Person.findById(req.params.id)
-        if(!person){
-            throw new Error(`There is no person with id = ${req.params.id}.`)
-        }
-        res.json(person)
+  try {
+    const person = await req.Person.findById(req.params.id)
+    if (!person) {
+      throw new Error(`There is no person with id = ${req.params.id}.`)
     }
-    catch (error){
-        next(error)
-    }
-};
+    res.json(person)
+  }
+  catch (error) {
+    next(error)
+  }
+}
 
 /**
  * Deletes a specific person by ID and sends an appropriate response.
@@ -39,18 +39,18 @@ const getPerson = async (req, res, next) => {
  */
 const deletePerson = async (req, res, next) => {
 
-    try{
-        const id = req.params.id
-        const result = await req.Person.findByIdAndDelete(id)
-        if(!result){
-            throw new Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
-        }
-        res.status(204).end();
+  try {
+    const id = req.params.id
+    const result = await req.Person.findByIdAndDelete(id)
+    if (!result) {
+      throw new Error(`The persons with id = ${id} is already deleted or never added to the phonebook.`)
     }
-    catch(error){
-        next(error)
-    }
-};
+    res.status(204).end()
+  }
+  catch (error) {
+    next(error)
+  }
+}
 
 /**
  * Adds a new person to the phonebook and sends the created person object.
@@ -58,16 +58,16 @@ const deletePerson = async (req, res, next) => {
  * @param {Object} res - The HTTP response object. Returns the added person as a JSON object or a 400 error if input is invalid.
  */
 const postPerson = async (req, res, next) => {
-    try{
-        const newPerson = new req.Person ({name: req.body.name, number: req.body.number})
-        const receivedPerson = await newPerson.save(newPerson)
-        res.json(receivedPerson)
+  try {
+    const newPerson = new req.Person({ name: req.body.name, number: req.body.number })
+    const receivedPerson = await newPerson.save(newPerson)
+    res.json(receivedPerson)
 
-    }   
-    catch (error){
-        next(error)
-    }
-};
+  }
+  catch (error) {
+    next(error)
+  }
+}
 
 /**
  * Updates an existing person in the phonebook and sends the updated person object.
@@ -75,14 +75,23 @@ const postPerson = async (req, res, next) => {
  * @param {Object} res - The HTTP response object. Returns the updated person as a JSON object or a 400 error if input is invalid.
  */
 const updatePerson = async (req, res, next) => {
-    try {
-        const recievedPerson = { name: req.body.name, number: req.body.number }
-        const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id, 
-            recievedPerson, { new: true, runValidators: true, context: 'query' })
-        res.json(updatedPerson)
-    } catch (error) {
-        next(error)
+  try {
+    const recievedPerson = {
+      name: req.body.name,
+      number: req.body.number
     }
+    const updatedPerson = await req.Person.findByIdAndUpdate(req.params.id,
+      recievedPerson, { new: true, runValidators: true, context: 'query' })
+    res.json(updatedPerson)
+  } catch (error) {
+    next(error)
+  }
 }
 
-module.exports = { getPersons, getPerson, deletePerson, postPerson, updatePerson }
+module.exports = {
+  getPersons,
+  getPerson,
+  deletePerson,
+  postPerson,
+  updatePerson
+}

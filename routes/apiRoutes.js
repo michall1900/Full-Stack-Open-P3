@@ -3,10 +3,10 @@
  * This module sets up the router and associates routes with controller functions.
  */
 
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const getModel = require('../middlewares/getPersonModel')
-const {getPersons, getPerson, postPerson, deletePerson, updatePerson} = require('../controllers/personsController'); // Importing controller functions for persons
+const { getPersons, getPerson, postPerson, deletePerson, updatePerson } = require('../controllers/personsController') // Importing controller functions for persons
 const isBodyExist = require('../middlewares/isBodyExist')
 
 /**
@@ -33,7 +33,7 @@ router.use(getModel)
  * @param {express.Response} res - The response object.
  * Uses the getPersons method from the persons controller.
  */
-router.get('/', getPersons);
+router.get('/', getPersons)
 
 /**
  * Route serving a single person by ID.
@@ -45,7 +45,7 @@ router.get('/', getPersons);
  * @param {express.Response} res - The response object.
  * Uses the getPerson method from the persons controller.
  */
-router.get('/:id', getPerson);
+router.get('/:id', getPerson)
 
 /**
  * Route for creating a new person.
@@ -57,7 +57,7 @@ router.get('/:id', getPerson);
  * @param {express.Response} res - The response object.
  * Uses the postPerson method from the persons controller.
  */
-router.post('/',isBodyExist, postPerson);
+router.post('/', isBodyExist, postPerson)
 
 /**
  * Route for deleting a person by ID.
@@ -69,7 +69,7 @@ router.post('/',isBodyExist, postPerson);
  * @param {express.Response} res - The response object.
  * Uses the deletePerson method from the persons controller.
  */
-router.delete('/:id', deletePerson);
+router.delete('/:id', deletePerson)
 
 /**
  * Route for updating a person by ID.
@@ -81,6 +81,6 @@ router.delete('/:id', deletePerson);
  * @param {express.Response} res - The response object.
  * Uses the updatePerson method from the persons controller.
  */
-router.put('/:id',isBodyExist, updatePerson)
+router.put('/:id', isBodyExist, updatePerson)
 
-module.exports = router;
+module.exports = router

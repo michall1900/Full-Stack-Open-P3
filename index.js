@@ -7,12 +7,12 @@ require('dotenv').config()
 const express = require('express')
 const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
-const {unknownEndpoint,idErrorHandler, validationErrorHandler, duplicateErrorHandler} = require('./middlewares/errors')
+const { unknownEndpoint,idErrorHandler, validationErrorHandler, duplicateErrorHandler } = require('./middlewares/errors')
 const app = express()
 
-const apiRoute = require('./routes/apiRoutes'); // API route module
-const infoRoute = require('./routes/infoRoutes'); // Information route module
- 
+const apiRoute = require('./routes/apiRoutes') // API route module
+const infoRoute = require('./routes/infoRoutes') // Information route module
+
 // Middleware setup
 app.use(express.json()) // Parse JSON bodies
 app.use(corsMiddleware) // Enable CORS
@@ -30,5 +30,5 @@ app.use(validationErrorHandler) // General error handler
 // Server setup
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-    console.log(`Listen on port ${PORT}`)
-});
+  console.log(`Listen on port ${PORT}`)
+})
