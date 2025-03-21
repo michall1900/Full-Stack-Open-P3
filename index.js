@@ -9,6 +9,7 @@ const requestsLogger = require('./middlewares/requestLogger')
 const corsMiddleware = require('./middlewares/corsSettings')
 const { unknownEndpoint,idErrorHandler, validationErrorHandler, duplicateErrorHandler } = require('./middlewares/errors')
 const app = express()
+const mongoose = require('mongoose')
 
 const apiRoute = require('./routes/apiRoutes') // API route module
 const infoRoute = require('./routes/infoRoutes') // Information route module
@@ -32,3 +33,13 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Listen on port ${PORT}`)
 })
+
+const closingSignals = ['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGHUP', 'SIGBREAK']
+
+closingSignals.forEach((signal) => {
+  process.on(signal, async() => {
+    await mongoose.connection.close()
+    process.exit(0)
+  })
+})
+
